@@ -1,0 +1,108 @@
+:host {
+  display: block; /* Host element is a block container */
+}
+
+.bar {
+  position: sticky; /* Stick to the top of the viewport */
+  top: 0; /* Align to the top */
+  z-index: 100; /* Ensure it stays above other elements */
+  display: flex; /* Flex layout for alignment */
+  align-items: center; /* Center items vertically */
+  gap: 0.75rem; /* Spacing between items */
+  padding: 0.75rem 1rem; /* Inner spacing */
+  background: #fff; /* White background */
+  border-bottom: 1px solid #eee; /* Light gray border */
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+.logo {
+  width: 24px;
+  height: 24px;
+}
+.brand-text {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.links {
+  display: inline-flex; /* Inline flex layout */
+  gap: 0.75rem; /* Spacing between links */
+  align-items: center; /* Center items vertically */
+  margin-left: 0.5rem; /* Spacing from the left */
+}
+
+.link {
+  display: inline-flex; /* Inline flex layout */
+  align-items: center; /* Center items vertically */
+  gap: 0.45rem; /* Spacing between icon and text */
+  text-decoration: none; /* Remove underline */
+  color: #444; /* Dark gray text */
+  padding: 0.35rem 0.6rem; /* Inner spacing */
+  border-radius: 0.5rem; /* Rounded corners */
+  transition: background 0.15s ease, color 0.15s ease; /* Smooth hover effect */
+}
+.link .icon {
+  width: 18px;
+  height: 18px;
+}
+.link:hover {
+  background: #f6f6f6;
+}
+.link.active {
+  color: var(--accent, #ff6200);
+}
+
+.link.add {
+  color: #e08f7a; /* subtle like in your screenshot */
+  opacity: 0.9;
+}
+.link.add:hover {
+  background: #fff4ef;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.lang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+.lang img {
+  display: block;
+  width: 26px;
+  height: 18px;
+  object-fit: cover;
+}
+
+/* Responsive tweaks */
+@media (max-width: 680px) {
+  .brand-text {
+    display: none; /* Hide brand text on small screens */
+  }
+  .links span {
+    display: none; /* Show icons only */
+  }
+  .link {
+    padding: 0.35rem; /* Adjust padding for smaller screens */
+  }
+}

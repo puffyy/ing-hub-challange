@@ -1,3 +1,267 @@
+# ING Hubs Turkey Challenge — Lit HR App (100% Unit Test Coverage)
+
+A small **Lit** web app that showcases an HR module (employee list, employee form, shared UI components) with **comprehensive unit tests** using **@web/test-runner**, **Playwright**, **open-wc**, and **Sinon**.
+
+> This repository is prepared for the **ING Hubs Turkey Challenge**. All test messages and code comments are in **English**, per challenge requirements.
+
+---
+
+## Quick start
+
+```bash
+# 1) Install dependencies
+npm i
+
+# 2) Install Playwright browsers (required by @web/test-runner-playwright)
+npx playwright install
+
+# 3) Start the dev server (serves the app)
+npm run start
+
+# 4) Run the tests in all configured browsers
+npm test
+
+# Optional: watch mode
+npm run test:watch
+
+# Optional: run tests in a single browser (useful locally/CI)
+BROWSERS=chromium npm test
+```
+
+> If you see an error like `browserType.launch: Executable doesn't exist…`, it means Playwright browsers are missing. Run `npx playwright install`.
+
+---
+
+## Tech stack
+
+- **Lit** for Web Components
+- **@web/dev-server** & **@web/test-runner**
+- **@web/test-runner-playwright** (Chromium/Firefox/WebKit)
+- **open-wc testing** utilities (`fixture`, `expect`, `oneEvent`, `aTimeout`, etc.)
+- **Sinon** (stubs/spies — see ESM notes below)
+- **zustand (vanilla)** + **idb** for persistence
+- **V8 coverage** plugin (coverage thresholds set to **100%**)
+
+---
+
+## Scripts
+
+```json
+{
+  "scripts": {
+    "start": "wds --config web-dev-server.config.js",
+    "test": "wtr --config web-test-runner.config.js",
+    "test:watch": "wtr --watch --config web-test-runner.config.js",
+    "test:ci": "MODE=prod BROWSERS=chromium wtr --coverage --config web-test-runner.config.js"
+  }
+}
+```
+
+- `MODE=dev|prod` is used by the runner for different `nodeResolve.exportConditions`.
+- Limit browsers with `BROWSERS=chromium`, `BROWSERS=firefox`, or `BROWSERS=webkit`.
+
+---
+
+## Project layout
+
+```
+src/
+  app-root.js
+  router.js
+  i18n/
+    i18n.js        # loads en.json / tr.json and emits 'i18n-changed'
+    en.json
+    tr.json
+  components/
+    employee-form.js
+    employee-list.js
+    pages/
+      page-employees.js
+      page-employee-edit.js
+    shared/
+      confirm-dialog.js
+      pagination.js
+      search-input.js
+      hr-header.js
+      hr-nav.js
+  store/
+    employees.store.js
+    storage.idb.js
+  utils/
+    css.js
+    seed.js
+    validation.js
+
+test/
+  components/
+    employee-form.test.js
+    employee-list.test.js
+    shared/
+      confirm-dialog.test.js
+      pagination.test.js
+      search-input.test.js
+  pages/
+    page-employees.test.js
+    page-employee-edit.test.js
+  store/
+    employees.store.test.js
+  utils/
+    css.test.js
+    seed.test.js
+    validation.test.js
+```
+
+Tests are discovered with both patterns:
+
+- `test/**/*_test.js`
+- `test/**/*.test.js`
+
+---
+
+## Running specific tests
+
+```bash
+# Single file
+wtr --config web-test-runner.config.js --files "test/components/shared/pagination.test.js"
+
+# Grep by name (Mocha tdd style)
+wtr --config web-test-runner.config.js --grep "pagination"
+
+# Debug in a real browser
+wtr --config web-test-runner.config.js --manual
+# then open the shown URL, select tests, use DevTools
+```
+
+---
+
+## Coverage (100%)
+
+Coverage is enforced to **100%** for statements, branches, functions, and lines using the V8 coverage plugin configured in `web-test-runner.config.js`.
+
+Reports are written to `coverage/`:
+
+- **Text summary** in the terminal
+- **HTML** report in `coverage/`
+- **lcov** for CI tools
+
+Open the HTML report with:
+
+```bash
+open coverage/index.html
+```
+
+If coverage fails, open the HTML report to see exactly which lines/branches are missing tests.
+
+---
+
+## Testing guidance & conventions
+
+### 1) Do **not** stub live ESM imports directly
+
+Stubbing a live ESM binding throws `TypeError: ES Modules cannot be stubbed`.
+
+Use **test seams** instead:
+
+- Expose **static indirections** on classes for things you want to stub.
+
+  ```js
+  // employee-form.js
+  import {validateEmployee as _validateEmployee} from '../utils/validation.js';
+  import {confirm as _confirm} from './shared/confirm-dialog.js';
+
+  export class EmployeeForm extends LitElement {
+    static validateImpl = _validateEmployee;
+    static confirmImpl = _confirm;
+    // ...
+  }
+  ```
+
+  In tests:
+
+  ```js
+  sinon.stub(EmployeeForm, 'validateImpl').returns([]);
+  sinon.stub(EmployeeForm, 'confirmImpl').resolves(true);
+  ```
+
+- Stub **instance methods** after creating the element (e.g. `sinon.spy(el, '_cancel')`).
+
+- For the **store**, stub the API returned by `employeesStore.getState()`.
+
+### 2) Stub `fetch` for CSS and i18n
+
+- `adoptCss()` loads CSS files → return a small `/* test css */` response.
+- `i18n/i18n.js` loads `en.json` / `tr.json` → return minimal JSON with strings used in tests.
+
+This keeps tests fast and offline-friendly.
+
+### 3) Prevent real navigation
+
+- Some components call `location.href` or submit forms. In tests, spy on the function that navigates (e.g., `_cancel`) and avoid real page changes. The test runner aborts if the page navigates.
+
+### 4) `showPicker()` and user gestures
+
+- `HTMLInputElement.showPicker()` requires a user gesture and may not exist in the test browser.
+- In tests, set a fake function: `input.showPicker = () => {};` before invoking code that calls it, or verify the focus fallback path.
+
+### 5) i18n change propagation
+
+- Changing `<html lang>` triggers a `MutationObserver` in the i18n module which dispatches `i18n-changed`.
+- In tests, after `document.documentElement.lang = 'tr'` also fire:
+
+  ```js
+  window.dispatchEvent(new CustomEvent('i18n-changed'));
+  await aTimeout(0);
+  ```
+
+---
+
+## Troubleshooting
+
+**Playwright executable missing**
+
+- Run `npx playwright install`.
+
+**“ES Modules cannot be stubbed”**
+
+- You tried to stub a live import. Use the static indirection pattern or instance-level spies.
+
+**“Tests were interrupted because the page navigated…”**
+
+- A test caused navigation (`location.href`, anchor click, or form submit). Spy/override the method that navigates.
+
+**404 for `test/src/...`**
+
+- Import components from `src/...`, not `test/src/...` inside tests.
+
+**“showPicker() requires a user gesture”**
+
+- Don’t call it directly; set `input.showPicker = () => {};` in tests or assert the focus fallback.
+
+**Coverage below threshold**
+
+- Open `coverage/index.html` and add tests for red lines/branches.
+
+---
+
+## Notes on i18n
+
+- `src/i18n/i18n.js` loads `en.json` and `tr.json`, resolves the active dictionary by `<html lang>`, and emits `i18n-changed` on changes.
+- Components read translations via `t(key, params)` and re-render on the `i18n-changed` event.
+
+---
+
+## Accessibility
+
+- Confirm dialog traps focus, supports `Escape` / `Enter` / `Tab` logic, and restores focus to the previously focused element.
+- Pagination uses `aria-current`, `aria-label`, and `rel="next"`.
+- Lists, tables, and action buttons include labels for screen readers.
+
+---
+
+## License
+
+BSD-3-Clause (same as the Lit starter). See headers in source files.
+
 # LitElement JavaScript starter
 
 This project includes a sample component using LitElement with JavaScript.

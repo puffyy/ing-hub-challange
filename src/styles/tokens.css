@@ -1,0 +1,15 @@
+:root {
+  --font-sans: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
+    Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; /* Default sans-serif font stack */
+  --text-color: #222; /* Default text color (dark gray) */
+  --color-primary: #ff6200; /* Primary theme color (orange) */
+  --color-bg: #f8f8f8; /* Background color (light gray) */
+}
+
+html,
+body {
+  margin: 0; /* Remove default margin */
+  font-family: var(--font-sans); /* Apply default font */
+  color: var(--text-color); /* Apply default text color */
+  background-color: var(--color-bg); /* Apply default background color */
+}

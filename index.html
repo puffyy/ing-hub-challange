@@ -1,11 +1,27 @@
-<!doctype html>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Lit Starter Kit</title>
+    <title>Lit HR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Optional global tokens (only keep if you actually created this file) -->
+    <!-- <link rel="stylesheet" href="./src/styles/tokens.css" /> -->
+    <base href="/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap&subset=latin-ext"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/styles/tokens.css" />
+
+    <!-- App entry: load your Lit app from /src -->
+    <script type="module" src="./src/app-root.js"></script>
   </head>
   <body>
-    <a href="/dev/index.html">Component Demo</a>
+    <app-root></app-root>
   </body>
 </html>

@@ -1,0 +1,200 @@
+/* ===============================
+   Employee Form (self-contained)
+   =============================== */
+
+/* Tokens: Define reusable color variables */
+:host {
+  --color-primary: #ff6200; /* ING orange */
+  --color-border: #eee; /* Default border color */
+  --indigo: #525199; /* Indigo for outline buttons */
+}
+
+form {
+  background-color: #fff; /* White background for form */
+  padding: 1rem; /* Inner spacing */
+  border-radius: 0.5rem; /* Rounded corners */
+}
+
+/* Reset fieldset defaults */
+form fieldset {
+  border: 0; /* Remove border */
+  margin: 0; /* Reset margin */
+  padding: 0; /* Reset padding */
+}
+
+/* Error box: Styling for error messages */
+.errors {
+  margin: 0.25rem 0 0.75rem; /* Spacing around error box */
+  padding: 0.5rem 0.75rem; /* Inner spacing */
+  border: 1px solid #ffd7c2; /* Light orange border */
+  background: #fff4ef; /* Light orange background */
+  border-radius: 0.5rem; /* Rounded corners */
+  color: #5a2a00; /* Dark orange text */
+}
+
+/* Optional edit note: Highlight for editing state */
+.editing-note {
+  margin: 0.25rem 0 0.5rem; /* Spacing around note */
+  font-weight: 600; /* Bold text */
+  color: #333; /* Dark gray text */
+}
+
+/* ===============================
+   Filters panel (look & feel)
+   =============================== */
+.filters-panel {
+  padding: 1rem 2rem; /* Inner spacing */
+  border-radius: 0.5rem; /* Rounded corners */
+  background: #fff; /* White background */
+}
+
+/* Responsive Grid with same gap: rows 2rem, columns 8rem */
+.filters-panel .grid {
+  /* Tunables */
+  --field-min: 250px; /* Minimum width for a field */
+  --row-gap: 2rem; /* Vertical spacing between rows */
+  --col-gap: 8rem; /* Horizontal spacing between columns */
+
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--field-min), 1fr)
+  ); /* Responsive columns */
+  gap: var(--row-gap) var(--col-gap); /* Apply row and column gaps */
+  align-items: start; /* Align items at the start */
+  justify-items: stretch; /* Stretch items to fill space */
+}
+
+/* Field block: Label and input grouping */
+.filters-panel label {
+  display: flex; /* Use flex layout */
+  flex-direction: column; /* Stack children vertically */
+  gap: 0.25rem; /* Spacing between label and input */
+  /* Let grid control width; no fixed widths here */
+}
+
+/* Inputs/selects: Styling for form controls */
+.filters-panel input,
+.filters-panel select {
+  height: 34px; /* Fixed height */
+  padding: 0 0.5rem; /* Inner spacing */
+  border: 1px solid var(--color-border, #eee); /* Border color */
+  border-radius: 0.5rem; /* Rounded corners */
+  background: #fff; /* White background */
+}
+
+.filters-panel input:focus,
+.filters-panel select:focus {
+  outline-color: var(--color-primary); /* Orange outline on focus */
+  outline-offset: 1px; /* Offset outline */
+}
+
+/* ===============================
+   Date controls + orange icon
+   =============================== */
+.filters-panel input[type='date'] {
+  accent-color: var(
+    --color-primary
+  ) !important; /* Orange accent for date picker */
+  color-scheme: light; /* Light color scheme */
+}
+
+/* Hide native picker icon (we draw our own) */
+.filters-panel input[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0; /* Hide default icon */
+  cursor: pointer; /* Pointer cursor */
+}
+
+/* Wrapper that draws orange calendar icon */
+.date-wrapper {
+  position: relative; /* Position for custom icon */
+  display: flex; /* Flex layout */
+  width: 100%; /* Full width */
+  border: 1px solid var(--color-border, #eee); /* Border color */
+  border-radius: 6px; /* Rounded corners */
+  background: #fff; /* White background */
+}
+
+.date-wrapper input[type='date'] {
+  width: 100%; /* Full width */
+  height: 2.5em; /* Fixed height */
+  font: 500 14px/1 system-ui, sans-serif; /* Font styling */
+  padding: 0 0.5rem; /* Inner spacing */
+  border: 0; /* Remove border (wrapper handles it) */
+  background: transparent; /* Transparent background */
+}
+
+.date-wrapper::after {
+  content: ''; /* Empty content for icon */
+  position: absolute; /* Position relative to wrapper */
+  right: 0.5em; /* Position icon on the right */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+  width: 1.2em; /* Icon width */
+  height: 1.2em; /* Icon height */
+  background: url('data:image/svg+xml;utf8, \<svg xmlns="http://www.w3.org/2000/svg" fill="%23ff6200" viewBox="0 0 24 24">\<path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>\</svg>')
+    no-repeat center; /* Custom calendar icon */
+  background-size: contain; /* Fit icon within bounds */
+  pointer-events: none; /* Prevent interaction with icon */
+}
+
+/* ===============================
+   Actions (buttons centered)
+   =============================== */
+.form-actions {
+  display: flex; /* Center buttons */
+  justify-content: center; /* Align buttons horizontally */
+  gap: 1.5rem; /* Spacing between buttons */
+  margin-top: 1rem; /* Top margin */
+}
+
+.btn {
+  padding: 0.25rem 0; /* Vertical padding */
+  border-radius: 0.5rem; /* Rounded corners */
+  border: 1px solid var(--color-border); /* Border color */
+  background: #fff; /* White background */
+  cursor: pointer; /* Pointer cursor */
+  font-weight: 600; /* Bold text */
+  width: 200px; /* Fixed width */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Primary (orange): Styling for primary buttons */
+.btn.primary {
+  background: var(--color-primary); /* Orange background */
+  border-color: #ffb08a; /* Light orange border */
+  color: #fff; /* White text */
+}
+.btn.primary:hover {
+  filter: brightness(0.97); /* Slightly darker on hover */
+}
+
+/* Outline (indigo): Styling for secondary buttons */
+.btn.outline {
+  background: #fff; /* White background */
+  color: var(--indigo); /* Indigo text */
+  border: 1.5px solid var(--indigo); /* Indigo border */
+}
+.btn.outline:hover {
+  background: #f7f7ff; /* Light indigo background on hover */
+}
+
+/* ===============================
+   Responsive tweaks
+   =============================== */
+@media (max-width: 920px) {
+  .filters-panel .grid {
+    --field-min: 220px; /* Adjust minimum field width */
+    --row-gap: 1.5rem; /* Reduce row gap */
+    --col-gap: 3rem; /* Reduce column gap */
+  }
+}
+
+@media (max-width: 520px) {
+  .filters-panel .grid {
+    grid-template-columns: 1fr; /* Single column layout */
+    --row-gap: 1rem; /* Reduce row gap */
+    --col-gap: 1rem; /* Reduce column gap */
+  }
+}

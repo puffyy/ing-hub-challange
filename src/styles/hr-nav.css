@@ -1,0 +1,48 @@
+.nav {
+  position: sticky; /* Stick to the top of the viewport */
+  top: 0; /* Align to the top */
+  z-index: 10; /* Ensure it stays above other elements */
+  display: flex; /* Flex layout for alignment */
+  align-items: center; /* Center items vertically */
+  gap: 1rem; /* Spacing between items */
+  padding: 0.75rem 1rem; /* Inner spacing */
+  background: #fff; /* White background */
+  border-bottom: 1px solid #eee; /* Light gray border */
+}
+
+.brand {
+  font-weight: 700; /* Bold text */
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+}
+
+.links {
+  display: flex; /* Flex layout for links */
+  gap: 0.75rem; /* Spacing between links */
+  align-items: center; /* Center items vertically */
+  margin-left: auto; /* Push links to the right */
+}
+
+.links a {
+  text-decoration: none; /* Remove underline */
+  color: #222; /* Dark gray text */
+  padding: 0.25rem 0.5rem; /* Inner spacing */
+  border-radius: 0.5rem; /* Rounded corners */
+}
+
+.links a.primary {
+  background: #0b5; /* Green background for primary link */
+  color: #fff; /* White text */
+}
+
+.right {
+  display: flex; /* Flex layout for right section */
+  align-items: center; /* Center items vertically */
+  gap: 0.5rem; /* Spacing between items */
+}
+
+.lang select {
+  padding: 0.25rem 0.5rem; /* Inner spacing */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 0.5rem; /* Rounded corners */
+}

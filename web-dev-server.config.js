@@ -12,6 +12,8 @@ if (!['dev', 'prod'].includes(mode)) {
 }
 
 export default {
+  rootDir: '.',
+  appIndex: 'index.html',
   nodeResolve: {exportConditions: mode === 'dev' ? ['development'] : []},
   preserveSymlinks: true,
   plugins: [

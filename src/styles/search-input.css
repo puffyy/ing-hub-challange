@@ -1,0 +1,23 @@
+.search {
+  position: relative; /* Position for potential icons or overlays */
+  display: inline-block; /* Inline container */
+}
+
+.search input {
+  padding: 0.5rem 0.75rem; /* Inner spacing */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 0.5rem; /* Rounded corners */
+  min-width: 220px; /* Minimum width for input */
+}
+
+.visually-hidden {
+  position: absolute; /* Remove from normal flow */
+  width: 1px; /* Minimize width */
+  height: 1px; /* Minimize height */
+  padding: 0; /* Remove padding */
+  margin: -1px; /* Remove margin */
+  overflow: hidden; /* Hide overflow */
+  clip: rect(0, 0, 0, 0); /* Clip content */
+  white-space: nowrap; /* Prevent line breaks */
+  border: 0; /* Remove border */
+}

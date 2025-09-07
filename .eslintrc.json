@@ -11,7 +11,8 @@
   },
   "env": {
     "browser": true,
-    "mocha": true
+    "mocha": true,
+    "es2020": true
   },
   "rules": {
     "no-unexpected-multiline": "off"

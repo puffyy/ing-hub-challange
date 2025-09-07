@@ -1,0 +1,454 @@
+/* Header row: Title and actions */
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Title left, actions right */
+  gap: 1rem;
+  margin: 0 0 0.75rem;
+  min-width: 0; /* Prevent flex overflow */
+}
+
+.list-header .title {
+  flex: 1 1 auto; /* Push actions to the right */
+  margin: 0; /* Remove default h1 margins */
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--color-primary, #ff6200); /* Orange title */
+}
+
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: nowrap; /* Stay on one line */
+}
+
+/* Icon toggle (segmented buttons) */
+.view-toggle {
+  display: inline-flex;
+  border: none;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: background 0.15s ease, opacity 0.15s ease, filter 0.15s ease;
+}
+
+.icon-btn:hover {
+  background: #f6f6f6; /* Light gray background on hover */
+  opacity: 0.7;
+}
+
+.icon-btn[aria-pressed='true'] {
+  opacity: 1; /* Fully visible when pressed */
+  outline: none;
+}
+
+.icon-btn img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* Table/Card view styles */
+.view {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(260px, 1fr)
+  ); /* Responsive grid */
+  margin-bottom: 0.75rem;
+}
+
+.cards article {
+  border: 1px solid #eee; /* Light gray border */
+  border-radius: 0.75rem; /* Rounded corners */
+  padding: 0.75rem; /* Inner spacing */
+  background: #fff; /* White background */
+}
+
+.cards h3 {
+  margin: 0 0 0.25rem 0; /* Spacing below heading */
+  font-size: 1.05rem;
+}
+
+.cards .actions {
+  display: flex;
+  gap: 0.5rem; /* Spacing between actions */
+  margin-top: 0.5rem;
+}
+
+.cards a {
+  text-decoration: none; /* Remove underline */
+}
+
+table {
+  width: 100%; /* Full width */
+  background-color: white;
+  border-radius: 0.5rem; /* Rounded corners */
+  border-collapse: collapse;
+  margin-bottom: 0.75rem;
+}
+
+th {
+  color: var(--color-primary, #ff6200); /* Orange text */
+}
+
+th,
+td {
+  padding: 0.5rem; /* Inner spacing */
+  border-bottom: 1px solid #eee; /* Light gray border */
+  text-align: left;
+}
+
+td.actions button {
+  margin-left: 0.5rem; /* Spacing between buttons */
+}
+
+@media (max-width: 720px) {
+  table {
+    display: none; /* Hide table on small screens */
+  }
+}
+
+/* Search input in header */
+.header-actions .search {
+  height: 34px;
+  padding: 0 0.6rem; /* Inner spacing */
+  border: 1px solid var(--color-border, #eee); /* Border color */
+  border-radius: 0.5rem; /* Rounded corners */
+  min-width: 220px; /* Minimum width */
+}
+
+.header-actions .filter svg {
+  color: var(--color-primary, #ff6200); /* Orange icon */
+}
+
+/* Filter panel styles */
+.filters-panel {
+  margin: 0.25rem 0 1rem; /* Spacing around panel */
+  padding: 0.75rem; /* Inner spacing */
+  border: 1px solid var(--color-border, #eee); /* Border color */
+  border-radius: 0.5rem; /* Rounded corners */
+  background: #fff; /* White background */
+}
+
+.filters-panel .grid {
+  display: grid;
+  gap: 0.5rem; /* Spacing between grid items */
+  grid-template-columns: repeat(4, minmax(160px, 1fr)); /* 4-column grid */
+}
+
+.filters-panel label {
+  display: flex;
+  flex-direction: column; /* Stack label and input */
+  gap: 0.25rem; /* Spacing between label and input */
+}
+
+.filters-panel input,
+.filters-panel select {
+  height: 34px; /* Fixed height */
+  padding: 0 0.5rem; /* Inner spacing */
+  border: 1px solid var(--color-border, #eee); /* Border color */
+  border-radius: 0.5rem; /* Rounded corners */
+  background: #fff; /* White background */
+}
+
+.filters-actions {
+  margin-top: 0.5rem; /* Spacing above actions */
+  display: flex;
+  justify-content: flex-end; /* Align actions to the right */
+}
+
+.btn {
+  padding: 0.45rem 0.8rem; /* Inner spacing */
+  border-radius: 0.5rem; /* Rounded corners */
+  border: 1px solid var(--color-border, #eee); /* Border color */
+  background: #fff; /* White background */
+  cursor: pointer; /* Pointer cursor */
+}
+
+@media (max-width: 920px) {
+  .filters-panel .grid {
+    grid-template-columns: repeat(2, minmax(160px, 1fr)); /* 2-column grid */
+  }
+}
+
+@media (max-width: 520px) {
+  .filters-panel .grid {
+    grid-template-columns: 1fr; /* Single-column grid */
+  }
+}
+
+.filters-panel label > span {
+  color: var(--color-primary, #ff6200); /* Orange label text */
+}
+
+.filters-panel input[type='date'] {
+  accent-color: #ff6200 !important; /* Orange accent for date picker */
+  color-scheme: light; /* Light color scheme */
+}
+
+/* Checkbox column alignment */
+table th:first-child,
+table td.sel {
+  text-align: center; /* Center align */
+  width: 32px; /* Fixed width */
+}
+
+table td.sel input[type='checkbox'] {
+  accent-color: #ff6200; /* Orange checkbox */
+}
+
+/* Bulk actions bar inside table head */
+thead .bulk-actions th {
+  text-align: left; /* Align text to the left */
+  background: #fff4ef; /* Light orange background */
+  border-bottom: 1px solid #ffd7c2; /* Light orange border */
+  padding: 0.5rem 0.5rem; /* Inner spacing */
+  color: #5a2a00; /* Dark orange text */
+}
+
+.btn.danger {
+  margin-left: 0.5rem; /* Spacing between buttons */
+  padding: 0.35rem 0.65rem; /* Inner spacing */
+  border-radius: 0.5rem; /* Rounded corners */
+  border: 1px solid #ffb08a; /* Light orange border */
+  background: #ff6200; /* Orange background */
+  color: #fff; /* White text */
+  cursor: pointer; /* Pointer cursor */
+}
+
+.btn.danger:hover {
+  filter: brightness(0.95); /* Slightly darker on hover */
+}
+
+input[type='checkbox' i] {
+  accent-color: #ff6200; /* Orange checkbox */
+}
+
+/* Action icons */
+.actions .icon-link,
+.actions .icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; /* Fixed width */
+  height: 34px; /* Fixed height */
+  border-radius: 0.5rem; /* Rounded corners */
+  border: 1px solid transparent; /* Transparent border */
+  background: transparent; /* Transparent background */
+  cursor: pointer; /* Pointer cursor */
+  padding: 0;
+  margin: 0 0.1rem; /* Small margin */
+}
+
+.actions .icon-link:hover,
+.actions .icon-btn:hover {
+  background: #f6f6f6; /* Light gray background on hover */
+}
+
+.actions img {
+  width: 18px; /* Icon width */
+  height: 18px; /* Icon height */
+  display: block;
+}
+
+/* Danger button aligns to ING orange */
+.actions .icon-btn.danger {
+  color: #ff6200; /* Orange text */
+  border-color: rgba(255, 98, 0, 0.15); /* Light orange border */
+}
+
+.actions .icon-btn.danger:hover {
+  background: #fff4ef; /* Light orange background on hover */
+  border-color: rgba(255, 98, 0, 0.35); /* Darker orange border */
+}
+
+/* Accessibility helper: hide text but keep it for screen readers */
+.sr-only {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+}
+
+input[type='search']:focus {
+  outline-color: #ff6200; /* Orange outline on focus */
+}
+
+/* Hide native icon */
+.filters-panel input[type='date'],
+.filters-panel select {
+  outline: none; /* Remove outline */
+  border: none; /* Remove border */
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0; /* Hide default icon */
+  cursor: pointer; /* Pointer cursor */
+}
+
+.date-wrapper {
+  position: relative; /* Position for custom icon */
+  display: flex;
+  border: 1px solid var(--color-border, #eee); /* Border color */
+  border-radius: 6px; /* Rounded corners */
+}
+
+.date-wrapper input[type='date'] {
+  height: 2.5em; /* Fixed height */
+  width: 100%; /* Full width */
+  font: 500 14px/1 system-ui, sans-serif; /* Font styling */
+}
+
+.date-wrapper::after {
+  content: ''; /* Empty content for icon */
+  position: absolute; /* Position relative to wrapper */
+  right: 0.5em; /* Position icon on the right */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+  width: 1.2em; /* Icon width */
+  height: 1.2em; /* Icon height */
+  background: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" fill="%23ff6200" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>')
+    no-repeat center; /* Custom calendar icon */
+  background-size: contain; /* Fit icon within bounds */
+  pointer-events: none; /* Prevent interaction with icon */
+}
+
+:host {
+  --primary: #ff6200; /* Orange */
+  --indigo: #525199; /* Indigo */
+  --card-bg: #fff; /* White card background */
+  --card-border: #e7e6ea; /* Light gray border */
+  --label: #a8a6b2; /* Gray label text */
+  --text: #111; /* Black text */
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(460px, 1fr)
+  ); /* Responsive grid */
+  gap: 2.25rem; /* Spacing between cards */
+}
+
+/* Card styles */
+.emp-card {
+  background: var(--card-bg); /* White background */
+  border: 1px solid var(--card-border); /* Light gray border */
+  border-radius: 12px; /* Rounded corners */
+  padding: 20px 22px 16px; /* Inner spacing */
+  box-shadow: 0 2px 0 rgba(17, 17, 17, 0.05); /* Subtle shadow */
+}
+
+/* Two-column grid for card details */
+.emp-card__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns */
+  gap: 18px 40px; /* Spacing between items */
+  margin: 4px 0 14px; /* Spacing around grid */
+}
+
+.emp-card__grid .pair dt {
+  margin: 0 0 4px 0; /* Spacing below term */
+  font-size: 14px; /* Font size */
+  font-weight: 600; /* Bold text */
+  color: var(--label); /* Gray text */
+}
+
+.emp-card__grid .pair dd {
+  margin: 0; /* Reset margin */
+  color: var(--text); /* Black text */
+  line-height: 1.3; /* Line height */
+}
+
+.emp-card__grid .pair dd.wrap {
+  word-break: break-word; /* Break long words */
+}
+
+/* Actions at the bottom left of the card */
+.emp-card__actions {
+  display: flex;
+  gap: 12px; /* Spacing between actions */
+  margin-top: 8px; /* Spacing above actions */
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Spacing between icon and text */
+  height: 40px; /* Fixed height */
+  padding: 0 14px; /* Inner spacing */
+  border: none; /* Remove border */
+  border-radius: 10px; /* Rounded corners */
+  font-weight: 800; /* Bold text */
+  color: #fff; /* White text */
+  cursor: pointer; /* Pointer cursor */
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08); /* Subtle shadow */
+}
+
+.btn img {
+  width: 16px; /* Icon width */
+  height: 16px; /* Icon height */
+  fill: white; /* White fill */
+}
+
+/* Edit button (indigo) */
+.btn.indigo {
+  background: var(--indigo); /* Indigo background */
+}
+
+.btn.indigo:hover {
+  background: #474393; /* Darker indigo on hover */
+}
+
+.btn.indigo:active {
+  transform: translateY(1px); /* Slight movement on click */
+}
+
+/* Delete button (orange) */
+.btn.danger {
+  background: var(--primary); /* Orange background */
+}
+
+.btn.danger:hover {
+  background: #e45700; /* Darker orange on hover */
+}
+
+.btn.danger:active {
+  transform: translateY(1px); /* Slight movement on click */
+}
+
+/* Single-column layout for small screens */
+@media (max-width: 640px) {
+  .cards-grid {
+    grid-template-columns: 1fr; /* Single column */
+  }
+}

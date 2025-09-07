@@ -1,0 +1,302 @@
+[
+  {
+    "firstName": "Ahmet",
+    "lastName": "Sourtimes",
+    "employmentDate": "2024-06-21",
+    "birthDate": "1995-09-12",
+    "phone": "+90 532 123 45 67",
+    "email": "ahmet.sourtimes@example.com",
+    "department": "Analytics",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Ayşe",
+    "lastName": "Yılmaz",
+    "employmentDate": "2023-11-01",
+    "birthDate": "1994-04-10",
+    "phone": "+90 530 111 22 33",
+    "email": "ayse.yilmaz@example.com",
+    "department": "Tech",
+    "position": "Senior"
+  },
+  {
+    "firstName": "Mehmet",
+    "lastName": "Kaya",
+    "employmentDate": "2022-02-15",
+    "birthDate": "1990-08-03",
+    "phone": "+90 533 444 55 66",
+    "email": "mehmet.kaya@example.com",
+    "department": "Analytics",
+    "position": "Medior"
+  },
+  {
+    "firstName": "Zeynep",
+    "lastName": "Demir",
+    "employmentDate": "2021-09-30",
+    "birthDate": "1992-12-19",
+    "phone": "+90 555 000 11 22",
+    "email": "zeynep.demir@example.com",
+    "department": "Tech",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Burak",
+    "lastName": "Arslan",
+    "employmentDate": "2020-05-10",
+    "birthDate": "1989-03-21",
+    "phone": "+90 531 777 88 99",
+    "email": "burak.arslan@example.com",
+    "department": "Analytics",
+    "position": "Senior"
+  },
+  {
+    "firstName": "Elif",
+    "lastName": "Şahin",
+    "employmentDate": "2024-01-12",
+    "birthDate": "1996-07-07",
+    "phone": "+90 534 222 33 44",
+    "email": "elif.sahin@example.com",
+    "department": "Tech",
+    "position": "Medior"
+  },
+  {
+    "firstName": "Can",
+    "lastName": "Koç",
+    "employmentDate": "2023-03-18",
+    "birthDate": "1993-10-05",
+    "phone": "+90 536 333 44 55",
+    "email": "can.koc@example.com",
+    "department": "Analytics",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Derya",
+    "lastName": "Uçar",
+    "employmentDate": "2022-07-09",
+    "birthDate": "1991-11-28",
+    "phone": "+90 535 666 77 88",
+    "email": "derya.ucar@example.com",
+    "department": "Tech",
+    "position": "Senior"
+  },
+  {
+    "firstName": "Selim",
+    "lastName": "Aydın",
+    "employmentDate": "2019-10-22",
+    "birthDate": "1987-01-30",
+    "phone": "+90 537 888 99 00",
+    "email": "selim.aydin@example.com",
+    "department": "Analytics",
+    "position": "Medior"
+  },
+  {
+    "firstName": "Melis",
+    "lastName": "Yıldız",
+    "employmentDate": "2024-05-05",
+    "birthDate": "1997-02-14",
+    "phone": "+90 539 123 45 67",
+    "email": "melis.yildiz@example.com",
+    "department": "Tech",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Mert",
+    "lastName": "Yalçın",
+    "employmentDate": "2021-01-15",
+    "birthDate": "1991-06-22",
+    "phone": "+90 540 111 22 44",
+    "email": "mert.yalcin@example.com",
+    "department": "Analytics",
+    "position": "Senior"
+  },
+  {
+    "firstName": "Ece",
+    "lastName": "Polat",
+    "employmentDate": "2020-08-09",
+    "birthDate": "1995-03-13",
+    "phone": "+90 541 333 44 55",
+    "email": "ece.polat@example.com",
+    "department": "Tech",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Kerem",
+    "lastName": "Öztürk",
+    "employmentDate": "2022-05-17",
+    "birthDate": "1992-09-09",
+    "phone": "+90 542 555 66 77",
+    "email": "kerem.ozturk@example.com",
+    "department": "Analytics",
+    "position": "Medior"
+  },
+  {
+    "firstName": "Yasemin",
+    "lastName": "Acar",
+    "employmentDate": "2023-04-04",
+    "birthDate": "1996-12-01",
+    "phone": "+90 543 888 99 00",
+    "email": "yasemin.acar@example.com",
+    "department": "Tech",
+    "position": "Senior"
+  },
+  {
+    "firstName": "Onur",
+    "lastName": "Şen",
+    "employmentDate": "2019-11-30",
+    "birthDate": "1988-05-25",
+    "phone": "+90 544 000 11 22",
+    "email": "onur.sen@example.com",
+    "department": "Analytics",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Cemre",
+    "lastName": "Kurt",
+    "employmentDate": "2024-02-14",
+    "birthDate": "1997-08-17",
+    "phone": "+90 545 222 33 44",
+    "email": "cemre.kurt@example.com",
+    "department": "Tech",
+    "position": "Medior"
+  },
+  {
+    "firstName": "Tolga",
+    "lastName": "Aksoy",
+    "employmentDate": "2021-06-18",
+    "birthDate": "1993-01-09",
+    "phone": "+90 546 444 55 66",
+    "email": "tolga.aksoy@example.com",
+    "department": "Analytics",
+    "position": "Senior"
+  },
+  {
+    "firstName": "Esra",
+    "lastName": "Çelik",
+    "employmentDate": "2020-09-27",
+    "birthDate": "1994-11-30",
+    "phone": "+90 547 777 88 99",
+    "email": "esra.celik@example.com",
+    "department": "Tech",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Fatih",
+    "lastName": "Balcı",
+    "employmentDate": "2018-12-01",
+    "birthDate": "1989-07-14",
+    "phone": "+90 548 333 44 55",
+    "email": "fatih.balci@example.com",
+    "department": "Analytics",
+    "position": "Medior"
+  },
+  {
+    "firstName": "Hande",
+    "lastName": "Ergin",
+    "employmentDate": "2023-07-19",
+    "birthDate": "1995-02-03",
+    "phone": "+90 549 111 22 33",
+    "email": "hande.ergin@example.com",
+    "department": "Tech",
+    "position": "Senior"
+  },
+  {
+    "firstName": "Kaan",
+    "lastName": "Taş",
+    "employmentDate": "2019-04-10",
+    "birthDate": "1990-12-12",
+    "phone": "+90 550 123 45 67",
+    "email": "kaan.tas@example.com",
+    "department": "Analytics",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Seda",
+    "lastName": "Yıldırım",
+    "employmentDate": "2021-10-15",
+    "birthDate": "1993-04-20",
+    "phone": "+90 551 222 33 44",
+    "email": "seda.yildirim@example.com",
+    "department": "Tech",
+    "position": "Medior"
+  },
+  {
+    "firstName": "Emre",
+    "lastName": "Koşar",
+    "employmentDate": "2020-01-08",
+    "birthDate": "1989-10-08",
+    "phone": "+90 552 444 55 66",
+    "email": "emre.kosar@example.com",
+    "department": "Analytics",
+    "position": "Senior"
+  },
+  {
+    "firstName": "Nazlı",
+    "lastName": "Uzun",
+    "employmentDate": "2022-03-11",
+    "birthDate": "1997-09-05",
+    "phone": "+90 553 666 77 88",
+    "email": "nazli.uzun@example.com",
+    "department": "Tech",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Baran",
+    "lastName": "Tuna",
+    "employmentDate": "2019-08-20",
+    "birthDate": "1992-06-29",
+    "phone": "+90 554 999 00 11",
+    "email": "baran.tuna@example.com",
+    "department": "Analytics",
+    "position": "Medior"
+  },
+  {
+    "firstName": "Gizem",
+    "lastName": "Altun",
+    "employmentDate": "2024-03-22",
+    "birthDate": "1998-01-01",
+    "phone": "+90 555 234 56 78",
+    "email": "gizem.altun@example.com",
+    "department": "Tech",
+    "position": "Senior"
+  },
+  {
+    "firstName": "Okan",
+    "lastName": "Karaca",
+    "employmentDate": "2021-05-02",
+    "birthDate": "1990-02-14",
+    "phone": "+90 556 345 67 89",
+    "email": "okan.karaca@example.com",
+    "department": "Analytics",
+    "position": "Junior"
+  },
+  {
+    "firstName": "Buse",
+    "lastName": "Türkmen",
+    "employmentDate": "2020-07-13",
+    "birthDate": "1994-12-22",
+    "phone": "+90 557 456 78 90",
+    "email": "buse.turkmen@example.com",
+    "department": "Tech",
+    "position": "Medior"
+  },
+  {
+    "firstName": "Levent",
+    "lastName": "Özdemir",
+    "employmentDate": "2018-11-09",
+    "birthDate": "1987-08-18",
+    "phone": "+90 558 567 89 01",
+    "email": "levent.ozdemir@example.com",
+    "department": "Analytics",
+    "position": "Senior"
+  },
+  {
+    "firstName": "İrem",
+    "lastName": "Ekinci",
+    "employmentDate": "2023-09-16",
+    "birthDate": "1996-05-27",
+    "phone": "+90 559 678 90 12",
+    "email": "irem.ekinci@example.com",
+    "department": "Tech",
+    "position": "Junior"
+  }
+]

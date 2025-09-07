@@ -1,0 +1,61 @@
+{
+  "from": "başlangıç",
+  "to": "son",
+  "title": {
+    "employee-list": "Çalışan Listesi"
+  },
+  "nav": {"employees": "Çalışanlar", "addNew": "Yeni Ekle"},
+  "list": {
+    "search": "Ara…",
+    "tableView": "Tablo",
+    "cardView": "Kartlar",
+    "addNew": "Yeni Ekle",
+    "tableAria": "Çalışan tablosu",
+    "all": "Hepsi",
+    "selected": "Seçildi"
+  },
+  "emp": {
+    "label": "İşlemler",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "employmentDate": "İşe Başlama Tarihi",
+    "birthDate": "Doğum Tarihi",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "department": "Departman",
+    "position": "Pozisyon"
+  },
+  "form": {
+    "editing": "Düzenlediğiniz kişi ",
+    "pleaseSelect": "Lütfen seçiniz"
+  },
+  "actions": {
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "create": "Oluştur",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "clear": "Temizle",
+    "proceed": "Devam et",
+    "close": "Kapat",
+    "deleteAll": "Seçilenleri sil"
+  },
+  "confirm": {
+    "title": "Emin misiniz?",
+    "updateMsg": "{name} için yapılan değişiklikler kaydedilecek.",
+    "deleteMsg": "{name} çalışan kaydı silinecek."
+  },
+  "errors": {
+    "uniqueEmail": "E-posta benzersiz olmalı.",
+    "unknown": "Bilinmeyen hata.",
+    "required": "{label}: zorunludur.",
+    "lettersLen": "{label}: {min}–{max} harf olmalı.",
+    "invalidEmail": "{label}: geçersiz e-posta biçimi.",
+    "invalidPhone": "{label}: geçersiz telefon numarası.",
+    "enum": "{label}: şunlardan biri olmalı: {list}.",
+    "dateInvalid": "{label}: geçersiz tarih (YYYY-MM-DD).",
+    "dateFuture": "{label}: gelecek bir tarih olamaz.",
+    "employmentBeforeBirth": "{employment}: {birth} tarihinden sonra olmalı.",
+    "minAge": "{employment}: çalışan en az {min} yaşında olmalı."
+  }
+}

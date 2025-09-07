@@ -1,0 +1,76 @@
+.pagination {
+  display: flex; /* Flex layout for pagination */
+  gap: 0.25rem; /* Spacing between items */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  flex-wrap: wrap; /* Wrap items if needed */
+  --primary: #ff6200; /* Primary theme color */
+}
+
+/* Baseline buttons (for page numbers) */
+.pagination button {
+  min-width: 2rem; /* Minimum width */
+  height: 2rem; /* Fixed height */
+  padding: 0 0.5rem; /* Inner spacing */
+  border: none; /* Remove border */
+  background: none; /* Transparent background */
+  border-radius: 1rem; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  color: #333; /* Dark gray text */
+  font-weight: 500; /* Medium font weight */
+  line-height: 1; /* Line height */
+}
+
+/* Prev/Next: No border, primary color when active */
+.pagination button.prev,
+.pagination button.next {
+  border: none; /* Remove border */
+  background: transparent; /* Transparent background */
+  color: var(--primary); /* Primary color */
+  min-width: 2rem; /* Minimum width */
+  padding: 0 0.25rem; /* Inner spacing */
+}
+
+/* Prev/Next hover (active state) */
+.pagination button.prev:not(:disabled):hover,
+.pagination button.next:not(:disabled):hover {
+  background: rgba(255, 98, 0, 0.08); /* Light orange highlight */
+  border-radius: 0.75rem; /* Rounded corners */
+}
+
+/* Prev/Next disabled state */
+.pagination button.prev:disabled,
+.pagination button.next:disabled {
+  color: #bbb; /* Light gray text */
+  cursor: not-allowed; /* Disabled cursor */
+}
+
+/* Current page: Filled with primary color */
+.pagination button.current {
+  background: var(--primary); /* Primary background */
+  border-color: var(--primary); /* Primary border */
+  color: #fff; /* White text */
+  cursor: default; /* Default cursor */
+  pointer-events: none; /* Disable hover/click behavior */
+}
+
+/* Other hover states (for page numbers) */
+.pagination button:not(:disabled):not(.current):hover {
+  background: #fafafa; /* Light gray background */
+  border-color: #bbb; /* Light gray border */
+}
+
+/* Disabled state (for page numbers if needed) */
+.pagination button:disabled:not(.prev):not(.next) {
+  background: #f8f8f8; /* Light gray background */
+  border-color: #e0e0e0; /* Light gray border */
+  color: #aaa; /* Light gray text */
+  cursor: not-allowed; /* Disabled cursor */
+}
+
+/* Ellipsis (for skipped pages) */
+.pagination .ellipsis {
+  padding: 0 0.25rem; /* Inner spacing */
+  color: #888; /* Gray text */
+  user-select: none; /* Prevent text selection */
+}

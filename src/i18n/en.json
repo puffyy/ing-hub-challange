@@ -1,0 +1,61 @@
+{
+  "from": "from",
+  "to": "to",
+  "title": {
+    "employee-list": "Employee List"
+  },
+  "nav": {"employees": "Employees", "addNew": "Add New"},
+  "list": {
+    "search": "Search…",
+    "tableView": "Table",
+    "cardView": "Cards",
+    "addNew": "Add New",
+    "tableAria": "Employee table",
+    "all": "All",
+    "selected": "Selected"
+  },
+  "emp": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "employmentDate": "Date of Employment",
+    "birthDate": "Date of Birth",
+    "phone": "Phone",
+    "email": "Email",
+    "department": "Department",
+    "position": "Position"
+  },
+  "form": {
+    "editing": "You are editing ",
+    "pleaseSelect": "Please select"
+  },
+  "actions": {
+    "label": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "save": "Save",
+    "cancel": "Cancel",
+    "clear": "Clear",
+    "proceed": "Proceed",
+    "close": "Close",
+    "deleteSelected": "Delete selected"
+  },
+  "confirm": {
+    "title": "Are you sure?",
+    "updateMsg": "Changes to {name} will be saved.",
+    "deleteMsg": "Selected Employee record of {name} will be deleted."
+  },
+  "errors": {
+    "uniqueEmail": "Email must be unique.",
+    "unknown": "Unknown error.",
+    "required": "{label}: is required.",
+    "lettersLen": "{label}: must be {min}–{max} letters.",
+    "invalidEmail": "{label}: invalid email format.",
+    "invalidPhone": "{label}: invalid phone number.",
+    "enum": "{label}: must be one of {list}.",
+    "dateInvalid": "{label}: invalid date (YYYY-MM-DD).",
+    "dateFuture": "{label}: cannot be in the future.",
+    "employmentBeforeBirth": "{employment}: must be after {birth}.",
+    "minAge": "{employment}: employee must be at least {min} years old."
+  }
+}
