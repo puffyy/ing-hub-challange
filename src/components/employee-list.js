@@ -3,6 +3,7 @@ import {LitElement, html} from 'lit';
 import {t} from '../i18n/i18n.js';
 import {employeesStore} from '../store/employees.store.js';
 import {adoptCss} from '../utils/css.js';
+import {confirm as showConfirm} from './shared/confirm-dialog.js';
 import './shared/pagination.js';
 import './shared/search-input.js';
 
@@ -506,13 +507,24 @@ export class EmployeeList extends LitElement {
 
     const selectedCount = this._selected.size;
 
-    const bulkDelete = () => {
+    const bulkDelete = async () => {
       if (selectedCount < 2) return;
-      const ok = confirm(
+
+      // If the i18n key exists, use it; otherwise provide a safe fallback text
+      const fallbackMsg =
         t('confirm.deleteMany', {count: selectedCount}) ||
-          `Delete ${selectedCount} selected records?`
-      );
+        `Delete ${selectedCount} selected records?`;
+
+      const ok = await showConfirm({
+        variant: 'danger',
+        titleKey: 'confirm.title', // "Are you sure?"
+        messageKey: 'confirm.deleteMany', // use this if it exists in the dictionary
+        message: fallbackMsg, // otherwise show this direct text
+        confirmKey: 'actions.proceed', // "Proceed"
+        cancelKey: 'actions.cancel', // "Cancel"
+      });
       if (!ok) return;
+
       const api = employeesStore.getState();
       for (const id of this._selected) api.remove(id);
       this._selected.clear();
@@ -520,47 +532,49 @@ export class EmployeeList extends LitElement {
     };
 
     return html`
-      <table aria-label="${t('list.tableAria') || 'Employee table'}">
-        <thead>
-          ${selectedCount > 1
-            ? html`
-                <tr class="bulk-actions">
-                  <th colspan="10" style="flex justfiy-between">
-                    <strong>${selectedCount}</strong>
-                    ${t('list.selected') || 'selected'}
-                    <button class="btn danger" @click=${bulkDelete}>
-                      ${t('actions.deleteSelected') || 'Delete selected'}
-                    </button>
-                  </th>
-                </tr>
-              `
-            : null}
+      <div class="table-container">
+        <table aria-label="${t('list.tableAria') || 'Employee table'}">
+          <thead>
+            ${selectedCount > 1
+              ? html`
+                  <tr class="bulk-actions">
+                    <th colspan="10" style="flex justfiy-between">
+                      <strong>${selectedCount}</strong>
+                      ${t('list.selected') || 'selected'}
+                      <button class="btn danger" @click=${bulkDelete}>
+                        ${t('actions.deleteSelected') || 'Delete selected'}
+                      </button>
+                    </th>
+                  </tr>
+                `
+              : null}
 
-          <tr>
-            <th style="width:32px">
-              <input
-                type="checkbox"
-                name="select-page"
-                .checked=${allPageSelected}
-                @change=${toggleAll}
-                aria-label="${t('list.selectAll') || 'Select all on this page'}"
-              />
-            </th>
-            <th>${t('emp.firstName')}</th>
-            <th>${t('emp.lastName')}</th>
-            <th>${t('emp.employmentDate')}</th>
-            <th>${t('emp.birthDate')}</th>
-            <th>${t('emp.phone')}</th>
-            <th>${t('emp.email')}</th>
-            <th>${t('emp.department')}</th>
-            <th>${t('emp.position')}</th>
-            <th>${t('actions.label') || 'Actions'}</th>
-          </tr>
-        </thead>
+            <tr>
+              <th style="width:32px">
+                <input
+                  type="checkbox"
+                  name="select-page"
+                  .checked=${allPageSelected}
+                  @change=${toggleAll}
+                  aria-label="${t('list.selectAll') ||
+                  'Select all on this page'}"
+                />
+              </th>
+              <th>${t('emp.firstName')}</th>
+              <th>${t('emp.lastName')}</th>
+              <th>${t('emp.employmentDate')}</th>
+              <th>${t('emp.birthDate')}</th>
+              <th>${t('emp.phone')}</th>
+              <th>${t('emp.email')}</th>
+              <th>${t('emp.department')}</th>
+              <th>${t('emp.position')}</th>
+              <th>${t('actions.label') || 'Actions'}</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          ${items.map(
-            (e) => html`
+          <tbody>
+            ${items.map(
+              (e) => html`
               <tr>
                 <td class="sel">
                   <input
@@ -586,8 +600,8 @@ export class EmployeeList extends LitElement {
                     }"              /* ✅ router-friendly edit URL */
                     title="${t('actions.edit') || 'Edit'}"
                     aria-label="${t('actions.edit') || 'Edit'} ${e.firstName} ${
-              e.lastName
-            }"
+                e.lastName
+              }"
                   >
                     <img src="${this._iconEdit}" alt="" aria-hidden="true" />
                     <span class="sr-only">${t('actions.edit') || 'Edit'}</span>
@@ -599,8 +613,8 @@ export class EmployeeList extends LitElement {
                       this._onDelete(e.id, `${e.firstName} ${e.lastName}`)}
                     title="${t('actions.delete') || 'Delete'}"
                     aria-label="${t('actions.delete') || 'Delete'} ${
-              e.firstName
-            } ${e.lastName}"
+                e.firstName
+              } ${e.lastName}"
                   >
                     <img src="${this._iconTrash}" alt="" aria-hidden="true" />
                     <span class="sr-only">${
@@ -611,9 +625,10 @@ export class EmployeeList extends LitElement {
 
               </tr>
             `
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
     `;
   }
 

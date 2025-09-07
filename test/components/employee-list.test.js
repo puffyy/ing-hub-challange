@@ -475,7 +475,6 @@ suite('<employee-list>', () => {
   test('table header checkbox selects all on page, bulk delete removes all selected', async () => {
     // 8 items so still single table page (pageSize 10)
     const st = stubStore(makeSeed(8));
-    const confirmStub = sinon.stub(window, 'confirm').returns(true);
 
     const el = await fixture(html`<employee-list></employee-list>`);
     await el.updateComplete;
@@ -495,10 +494,29 @@ suite('<employee-list>', () => {
     btnDelete.click();
     await el.updateComplete;
 
+    // ❗ Custom dialog açıldı → gerçek onayı simüle et
+    // Dialog eklenmesi için bir frame bekle
+    await aTimeout(0);
+
+    // Dialog elementini bul
+    const dialog = document.querySelector('x-confirm-dialog');
+    expect(dialog, 'confirm dialog should be in the DOM').to.exist;
+
+    // ShadowRoot hazır olsun
+    if (dialog.updateComplete) await dialog.updateComplete;
+
+    // "Proceed" butonuna tıkla (sınıfı: .btn.primary)
+    const confirmBtn = dialog.shadowRoot.querySelector('.btn.primary');
+    expect(confirmBtn, 'confirm button should exist').to.exist;
+    confirmBtn.click();
+
+    // Silme akışının tamamlanması için bekle
+    await el.updateComplete;
+    await aTimeout(0);
+
     // All items on page removed
     expect(st.data.length).to.equal(0);
 
-    confirmStub.restore();
     st.restore();
   });
 

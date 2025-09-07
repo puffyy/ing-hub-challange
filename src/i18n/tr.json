@@ -43,7 +43,8 @@
   "confirm": {
     "title": "Emin misiniz?",
     "updateMsg": "{name} için yapılan değişiklikler kaydedilecek.",
-    "deleteMsg": "{name} çalışan kaydı silinecek."
+    "deleteMsg": "{name} çalışan kaydı silinecek.",
+    "deleteMany": "{count} seçili kayıt silinsin mi?"
   },
   "errors": {
     "uniqueEmail": "E-posta benzersiz olmalı.",

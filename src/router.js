@@ -1,4 +1,3 @@
-// src/router.js
 import {Router} from '@vaadin/router';
 
 export const initRouter = (outlet) => {
@@ -18,7 +17,7 @@ export const initRouter = (outlet) => {
     {
       path: '/employees/:id',
       component: 'page-employee-edit',
-      action: () => import('./pages/page-employee-edit.js'), // ✅ correct
+      action: () => import('./pages/page-employee-edit.js'),
     },
     {path: '(.*)', redirect: '/employees'},
   ]);

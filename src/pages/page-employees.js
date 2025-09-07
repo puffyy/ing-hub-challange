@@ -1,4 +1,3 @@
-// src/pages/page-employees.js
 // Import necessary modules and components
 import {LitElement, html} from 'lit';
 import '../components/employee-list.js';

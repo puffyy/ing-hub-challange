@@ -1,4 +1,3 @@
-// src/utils/css.js
 // Loads external CSS into a component's shadowRoot.
 // - Uses constructable stylesheets when supported (fast, no CSP inline needed).
 // - Falls back to <style> with cached text (requires style-src 'unsafe-inline' in CSP).

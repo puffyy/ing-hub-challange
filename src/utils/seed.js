@@ -1,4 +1,3 @@
-// src/utils/seed.js
 // Importing the employees store
 import {employeesStore} from '../store/employees.store.js';
 

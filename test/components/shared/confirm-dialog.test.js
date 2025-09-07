@@ -1,26 +1,25 @@
-// src/components/shared/confirm-dialog.js
 import {LitElement, html, nothing} from 'lit';
-import {t} from '../../i18n/i18n.js';
+import {t} from '../../../src/i18n/i18n.js';
 
 export class XConfirmDialog extends LitElement {
   static properties = {
     open: {type: Boolean, reflect: true},
-    variant: {type: String}, // "danger" | "warning" | "default" (sadece attribute olarak kullanılabilir)
+    variant: {type: String}, // "danger" | "warning" | "default" (only usable as an attribute)
 
-    // Doğrudan metinler (varsa i18n yerine bunlar gösterilir)
+    // Direct texts (if present, these are shown instead of i18n)
     title: {type: String},
     message: {type: String},
     confirmText: {type: String},
     cancelText: {type: String},
 
-    // i18n anahtarları
+    // i18n keys
     titleKey: {type: String},
     messageKey: {type: String},
     messageParams: {type: Object},
     confirmKey: {type: String},
     cancelKey: {type: String},
 
-    // i18n senkronu için (render tetiklemek adına state)
+    // for i18n sync (state to trigger render)
     lang: {type: String, state: true},
   };
 
@@ -66,21 +65,21 @@ export class XConfirmDialog extends LitElement {
   updated(changed) {
     if (changed.has('open')) {
       if (this.open) {
-        // Açılmadan önce odakta olan elemanı sakla
+        // Before opening, store the element that had focus
         this._lastFocus = /** @type {HTMLElement|null} */ (
           document.activeElement
         );
-        // Render sonrası ilk odaklanabilir elemana fokus ver
+        // After render, focus the first focusable element
         this.updateComplete.then(() => {
           const list = this._focusables();
           (list[0] || this.shadowRoot?.querySelector('.modal'))?.focus?.();
         });
       } else {
-        // Kapanınca odağı geri ver
+        // When closing, restore focus
         if (this._lastFocus && typeof this._lastFocus.focus === 'function') {
           const el = this._lastFocus;
           if (el && typeof el.focus === 'function' && el.isConnected) {
-            // Element hâlâ DOM’da ve focus fonksiyonu var → güvenle odakla
+            // Element is still in the DOM and has a focus function → safely focus it
             el.focus();
           }
         }
@@ -89,7 +88,7 @@ export class XConfirmDialog extends LitElement {
     }
   }
 
-  // ---- i18n yardımcıları ----
+  // ---- i18n helpers ----
   _interpolate(str, params) {
     if (!str || !params) return str || '';
     let s = String(str);
@@ -137,7 +136,7 @@ export class XConfirmDialog extends LitElement {
       : this._txt(this.cancelKey || 'actions.cancel', 'Cancel');
   }
 
-  // ---- fokus yönetimi / tuzak ----
+  // ---- focus management / trap ----
   _focusables() {
     const root = this.shadowRoot;
     if (!root) return [];
@@ -146,7 +145,7 @@ export class XConfirmDialog extends LitElement {
         'button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])'
       )
     );
-    // disabled olmayanları topla
+    // collect those that are not disabled
     return /** @type {HTMLElement[]} */ (
       nodes.filter((n) => !n.hasAttribute('disabled'))
     );
@@ -163,10 +162,10 @@ export class XConfirmDialog extends LitElement {
     }
 
     if (e.key === 'Enter') {
-      // Cancel (outline) butonu odaktaysa Enter confirm yapmasın
+      // If the Cancel (outline) button is focused, Enter should not confirm
       const current = this.shadowRoot?.activeElement || e.composedPath?.()[0];
       if (current && current.classList?.contains('outline')) {
-        // hiçbir şey yapma
+        // do nothing
       } else {
         e.preventDefault();
         this._confirm();
@@ -178,18 +177,18 @@ export class XConfirmDialog extends LitElement {
       const f = this._focusables();
       if (!f.length) return;
 
-      // headless ortamlarda activeElement yerine composedPath fallback'i kullan
+      // in headless environments use composedPath as a fallback instead of activeElement
       const current = this.shadowRoot?.activeElement || e.composedPath?.()[0];
       const i = f.indexOf(current);
 
       if (e.shiftKey) {
-        // ilk elemandan Shift+Tab → son elemana sar
+        // from the first element, Shift+Tab → wrap to the last element
         if (i <= 0) {
           e.preventDefault();
           f[f.length - 1].focus();
         }
       } else {
-        // son elemandan Tab → ilk elemana sar (Close butonu)
+        // from the last element, Tab → wrap to the first element (Close button)
         if (i === f.length - 1) {
           e.preventDefault();
           f[0].focus();
@@ -198,7 +197,7 @@ export class XConfirmDialog extends LitElement {
     }
   }
 
-  // ---- aksiyonlar ----
+  // ---- actions ----
   _cancel() {
     this.open = false;
     this.dispatchEvent(
@@ -213,7 +212,7 @@ export class XConfirmDialog extends LitElement {
     );
   }
 
-  // Dış API (opsiyonel)
+  // External API (optional)
   show() {
     this.open = true;
   }
@@ -221,11 +220,11 @@ export class XConfirmDialog extends LitElement {
     this.open = false;
   }
 
-  // ---- şablon ----
+  // ---- template ----
   render() {
     if (!this.open) return nothing;
 
-    // Testler odak sarmalaması için ilk odaklanabilirin .close, sonuncunun .btn.primary olmasını bekliyor.
+    // For focus trapping tests expect the first focusable to be .close and the last one to be .btn.primary.
     return html`
       <div class="backdrop" part="backdrop" @click=${this._cancel}></div>
 
@@ -263,7 +262,7 @@ export class XConfirmDialog extends LitElement {
     `;
   }
 
-  // Kolaylık amaçlı statik API
+  // Static API for convenience
   static confirm(opts = {}) {
     return new Promise((resolve) => {
       const el = new XConfirmDialog();
@@ -283,10 +282,10 @@ export class XConfirmDialog extends LitElement {
   }
 }
 
-// Güvenli tanımlama (test tekrarlı importlarda hata vermesin)
+// Safe definition (avoid errors on repeated imports in tests)
 if (!customElements.get('x-confirm-dialog')) {
   customElements.define('x-confirm-dialog', XConfirmDialog);
 }
 
-// Dışa aktarım (opsiyonel kolaylık)
+// Export (optional convenience)
 export const confirm = (opts) => XConfirmDialog.confirm(opts);

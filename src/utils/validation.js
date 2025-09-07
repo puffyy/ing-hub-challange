@@ -1,4 +1,3 @@
-// src/utils/validation.js
 // Import translation function
 import {t} from '../i18n/i18n.js';
 

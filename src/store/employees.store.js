@@ -1,4 +1,3 @@
-// src/store/employees.store.js
 // @ts-check
 import {createJSONStorage, persist} from 'zustand/middleware';
 import {createStore} from 'zustand/vanilla';

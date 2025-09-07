@@ -5,6 +5,9 @@
   --color-primary: #ff6200; /* Primary theme color (orange) */
   --color-bg: #f8f8f8; /* Background color (light gray) */
 }
+html {
+  scrollbar-gutter: stable both-edges; /* modern çözüm */
+}
 
 html,
 body {

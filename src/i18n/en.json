@@ -38,12 +38,21 @@
     "clear": "Clear",
     "proceed": "Proceed",
     "close": "Close",
-    "deleteSelected": "Delete selected"
+    "deleteSelected": "Delete selected",
+    "deleteMany": {
+      "title": "Delete {{count}} items?",
+      "titleWithEntity": "Delete {{count}} {{entityPlural}}?",
+      "message": "This will permanently delete the selected items. This action cannot be undone.",
+      "messageWithEntity": "This will permanently delete the selected {{entityPlural}}. This action cannot be undone.",
+      "proceed": "Delete",
+      "cancel": "Cancel"
+    }
   },
   "confirm": {
     "title": "Are you sure?",
     "updateMsg": "Changes to {name} will be saved.",
-    "deleteMsg": "Selected Employee record of {name} will be deleted."
+    "deleteMsg": "Selected Employee record of {name} will be deleted.",
+    "deleteMany": "Delete {count} selected record(s)?"
   },
   "errors": {
     "uniqueEmail": "Email must be unique.",
